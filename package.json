@@ -4,7 +4,7 @@
   "description": "This repository contains my process of creating a interactive visualization for The Volkskrant. Full documentation & process can be found [in my wiki](https://github.com/ninoschelcher/frontend-data/wiki)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "parcel src/index.html"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ninoschelcher/frontend-data/issues"
   },
-  "homepage": "https://github.com/ninoschelcher/frontend-data#readme"
+  "homepage": "https://github.com/ninoschelcher/frontend-data#readme",
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  }
 }
