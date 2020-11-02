@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # frontend-data
-Datavisualization Assignment for The Volkskrant &amp; @cmda-tt
-=======
-# Functional Programming 👓
 This repository contains my process of cleaning data with functional patterns and process of finding good research questions from the dataset with a matching concept for The Volkskrant. Full documentation & process can be found [in my wiki](https://github.com/ninoschelcher/functional-programming/wiki)
 
 # The Assignment 📝
@@ -92,4 +88,3 @@ There are a few steps required to do so you can get the program up and running o
 - [Laurens](https://github.com/Razpudding) — For [this](https://github.com/ninoschelcher/functional-programming/blob/5f093897016b1c53d41cc6bf522d4afe2c28a3d6/parkingData.js#L9) function to fetch data. 
 - [Max Hauser](https://github.com/max-hauser) — For regular feedback throughout the project.
 - [Stackoverflow Multiple Map Values](https://stackoverflow.com/a/41762582) — Used for [this part](https://github.com/ninoschelcher/functional-programming/blob/704b5c0cb8ae9a7c460b3895c497d0516c944126/parkingData.js#L43) of my code.
->>>>>>> 59303cab8d8070aaf05b7ff5d4e67aad1a8fa9bb
