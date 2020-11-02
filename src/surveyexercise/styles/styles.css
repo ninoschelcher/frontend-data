@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+.overview {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0 6em 0;
+}
+
+body h1 {
+    font-family: "Inter";
+    text-align: center;
+    padding: 1em;
+}
+
+.circle {
+    margin: 0 .5em;
+}
+
+.circle p {
+    font-family: "Inter";
+    text-align: center;
+    font-weight: bold;
+}
+
+.favouritecolour {
+    width: 8em;
+    height: 8em;
+}

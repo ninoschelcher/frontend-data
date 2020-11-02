@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -102,3 +103,9 @@ dist
 
 # TernJS port file
 .tern-port
+=======
+survey_data.js
+node_modules
+.cache/
+dist
+>>>>>>> 59303cab8d8070aaf05b7ff5d4e67aad1a8fa9bb
