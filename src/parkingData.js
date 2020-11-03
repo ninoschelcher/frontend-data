@@ -1,4 +1,5 @@
 import 'regenerator-runtime/runtime';
+import * as d3 from 'd3';
 
 // Variable Declaration for endpoints.
 const parkingSpecifications = 'https://opendata.rdw.nl/resource/b3us-f26s.json';
@@ -18,38 +19,79 @@ const getParkingData = async (url) => {
 const allParkingData = async () => {
   const parkingSpotSpecification = await getParkingData(parkingSpecifications);
   const parkingLocations = await getParkingData(geoLocations);
-  const chargingPoints = getChargingPoints(parkingSpotSpecification, row1, row2, cityCode);
-  const getParkingAmsterdamLocations = getParkingAmsterdamLocation(parkingLocations, row2, cityCode);
-  const filteredLocations = getLocationandArea(getParkingAmsterdamLocations);
-  
-  const correctLocations = getCorrectLocations(filteredLocations, chargingPoints, row2);
 
-  console.log(parkingLocations);
+  // const chargingPoints = getChargingPoints(parkingSpotSpecification, row1, row2, cityCode);
+  const amsterdamLocations = getParkingAmsterdamLocations(parkingSpotSpecification, row2, cityCode);
+  
+  const combinedData = combineDataSets(amsterdamLocations, parkingLocations);
+  placeDots(combinedData);
 }
 
 // Returns an array with parking garages from the specifications dataset that are in Amsterdam and have a charging point available.
-const getChargingPoints = (data, row1, row2, city) => {
-  return data.filter(data => data[row1] !== '0' && data[row2].startsWith(city));
+const getParkingAmsterdamLocations = (data, row2, city) => {
+  return data.filter(data => data[row2].startsWith(city));
 }
 
-//Returns an array with only the parking garages that are available in Amsterdam.
-const getParkingAmsterdamLocation  = (data, row, cityCode) => {
-  return data.filter(data => data[row].startsWith(cityCode));
+const combineDataSets = (specifications, geolocations) => {
+  const result = specifications.map((specification) => {
+    const geolocation = geolocations.find(geolocation =>
+      specification.areaid === geolocation.areaid
+    );
+
+    specification.areaidlocation = geolocation;
+    return specification;
+
+  });
+  return result;
 }
 
-// Returns an array with 
-const getLocationandArea = (data) => {
-  return data.map(data => ({areaid: data.areaid, location: data.location}));
-}
-
-//Returns the array with values that exists in the other array, it almost compares the 2 different datasets.
-const getCorrectLocations = (location, chargingpoint, row) => {
-  return chargingpoint.map(element => location.includes(element[row]));
-}
 
 allParkingData();
 
+const url = 'https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN_EXWATER&THEMA=gebiedsindeling';
+const width = 900;
+const height = 900;
+const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-// 4. Combine the 2 functions to know where the parking garages with a charging point are
+const projection = d3.geoMercator()
+  .scale(140000)
+  .center([5.116667,52.17000]);
+
+const pathGenerator = d3.geoPath()
+  .projection(projection);
+
+const svg = d3.select("body")
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height)
+
+const mapG = svg.append('g')
+const dotG = svg.append('g')
+
+const placeDots = (parkingLocations) => {
+  const dots = dotG.selectAll('circle')
+    .data(parkingLocations)
+    dots.enter()
+    .append('circle')
+    .attr('r', '5')
+    .attr("cx", d => { if(d.areaidlocation) {
+      return d.areaidlocation.location.latitude
+    }})
+    .attr("cy", d => { if(d.areaidlocation) {
+      return d.areaidlocation.location.longitude
+    }})
+  }
 
 
+const geodata = d3.json(url)
+  .then(data => {
+    const district = mapG.selectAll('path')
+      .data(data.features)
+      district.enter()
+      .append('path')
+      .attr('d', d => pathGenerator(d))
+      .attr('transform', `translate(500, 850)`)
+      .attr('fill', (d, i) => {return color(i)})
+      .attr('stroke', 'white')
+      .attr('cursor', 'pointer')
+})

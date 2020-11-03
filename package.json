@@ -4,7 +4,8 @@
   "description": "This repository contains my process of creating a interactive visualization for The Volkskrant. Full documentation & process can be found [in my wiki](https://github.com/ninoschelcher/frontend-data/wiki)",
   "main": "index.js",
   "scripts": {
-    "test": "parcel d3_playground/smiley/index.html"
+    "test": "parcel src/d3_playground/scatterplot/index.html",
+    "dev": "parcel src/index.html"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "parcel": "^1.12.4"
   },
   "dependencies": {
-    "d3": "^6.2.0"
+    "d3": "^6.2.0",
+    "topojson": "^3.0.2"
   }
 }
