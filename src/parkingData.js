@@ -49,13 +49,13 @@ const combineDataSets = (specifications, geolocations) => {
 allParkingData();
 
 const url = 'https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN_EXWATER&THEMA=gebiedsindeling';
-const width = 900;
-const height = 900;
+const width = 800;
+const height = 500;
 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
 const projection = d3.geoMercator()
-  .scale(140000)
-  .center([5.116667,52.17000]);
+  .scale(100000)
+  .center([4.95, 52.35])
 
 const pathGenerator = d3.geoPath()
   .projection(projection);
@@ -73,13 +73,17 @@ const placeDots = (parkingLocations) => {
     .data(parkingLocations)
     dots.enter()
     .append('circle')
-    .attr('r', '5')
+    .attr('r', '10')
+    .attr('transform', `translate(0, 20)`)
     .attr("cx", d => { if(d.areaidlocation) {
-      return d.areaidlocation.location.latitude
+      return projection([d.areaidlocation.location.longitude, d.areaidlocation.location.latitude])[0]
     }})
     .attr("cy", d => { if(d.areaidlocation) {
-      return d.areaidlocation.location.longitude
+      return projection([d.areaidlocation.location.longitude, d.areaidlocation.location.latitude])[1]
     }})
+    .attr('stroke', 'white')
+    .attr('fill', 'white')
+    .attr('fill-opacity', '0.4')
   }
 
 
@@ -90,7 +94,7 @@ const geodata = d3.json(url)
       district.enter()
       .append('path')
       .attr('d', d => pathGenerator(d))
-      .attr('transform', `translate(500, 850)`)
+      .attr('transform', `translate(0, 20)`)
       .attr('fill', (d, i) => {return color(i)})
       .attr('stroke', 'white')
       .attr('cursor', 'pointer')
