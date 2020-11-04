@@ -20,11 +20,11 @@ const allParkingData = async () => {
   const parkingSpotSpecification = await getParkingData(parkingSpecifications);
   const parkingLocations = await getParkingData(geoLocations);
 
-  // const chargingPoints = getChargingPoints(parkingSpotSpecification, row1, row2, cityCode);
   const amsterdamLocations = getParkingAmsterdamLocations(parkingSpotSpecification, row2, cityCode);
-  
   const combinedData = combineDataSets(amsterdamLocations, parkingLocations);
+
   placeDots(combinedData);
+  stackedBar(amsterdamLocations);
 }
 
 // Returns an array with parking garages from the specifications dataset that are in Amsterdam and have a charging point available.
@@ -48,6 +48,8 @@ const combineDataSets = (specifications, geolocations) => {
 
 allParkingData();
 
+
+//----------- d3 starts here -------------//
 const url = 'https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN_EXWATER&THEMA=gebiedsindeling';
 const width = 800;
 const height = 500;
@@ -60,13 +62,13 @@ const projection = d3.geoMercator()
 const pathGenerator = d3.geoPath()
   .projection(projection);
 
-const svg = d3.select("body")
+const map = d3.select("body")
   .append('svg')
   .attr('width', width)
   .attr('height', height)
 
-const mapG = svg.append('g')
-const dotG = svg.append('g')
+const mapG = map.append('g')
+const dotG = map.append('g')
 
 const placeDots = (parkingLocations) => {
   const dots = dotG.selectAll('circle')
@@ -84,8 +86,12 @@ const placeDots = (parkingLocations) => {
     .attr('stroke', 'white')
     .attr('fill', 'white')
     .attr('fill-opacity', '0.4')
+    .attr('cursor', 'pointer')
   }
 
+const stackedBar = (data) => {
+
+}
 
 const geodata = d3.json(url)
   .then(data => {
@@ -97,5 +103,11 @@ const geodata = d3.json(url)
       .attr('transform', `translate(0, 20)`)
       .attr('fill', (d, i) => {return color(i)})
       .attr('stroke', 'white')
-      .attr('cursor', 'pointer')
 })
+
+stackedBar();
+
+
+//Create a stacked bar chart
+//Zoom function?
+//Split up functionality in modules
