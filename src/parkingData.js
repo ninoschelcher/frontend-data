@@ -55,6 +55,10 @@ const width = 800;
 const height = 500;
 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
+const title = d3.select('#overlay')
+  .append('h1')
+  .text('Charging your electric car in Amsterdam, is it accessible?')
+
 const projection = d3.geoMercator()
   .scale(100000)
   .center([4.95, 52.35])
@@ -62,15 +66,18 @@ const projection = d3.geoMercator()
 const pathGenerator = d3.geoPath()
   .projection(projection);
 
+
 const map = d3.select("body")
   .append('svg')
   .attr('width', width)
   .attr('height', height)
 
+
 const mapG = map.append('g')
 const dotG = map.append('g')
 
 const placeDots = (parkingLocations) => {
+  console.log(parkingLocations)
   const dots = dotG.selectAll('circle')
     .data(parkingLocations)
     dots.enter()
@@ -84,7 +91,7 @@ const placeDots = (parkingLocations) => {
       return projection([d.areaidlocation.location.longitude, d.areaidlocation.location.latitude])[1]
     }})
     .attr('stroke', 'white')
-    .attr('fill', 'white')
+    .attr('fill', 'black')
     .attr('fill-opacity', '0.4')
     .attr('cursor', 'pointer')
   }
@@ -103,6 +110,7 @@ const geodata = d3.json(url)
       .attr('transform', `translate(0, 20)`)
       .attr('fill', (d, i) => {return color(i)})
       .attr('stroke', 'white')
+      .attr('stroke-width', '2')
 })
 
 stackedBar();
