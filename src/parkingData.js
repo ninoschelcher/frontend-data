@@ -51,8 +51,8 @@ allParkingData();
 
 //----------- d3 starts here -------------//
 const url = 'https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN_EXWATER&THEMA=gebiedsindeling';
-const width = 800;
-const height = 500;
+const width = 1500;
+const height = 900;
 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
 const title = d3.select('#overlay')
@@ -60,25 +60,24 @@ const title = d3.select('#overlay')
   .text('Charging your electric car in Amsterdam, is it accessible?')
 
 const projection = d3.geoMercator()
-  .scale(100000)
-  .center([4.95, 52.35])
+  .scale(170000)
+  .center([4.80, 52.39])
 
 const pathGenerator = d3.geoPath()
   .projection(projection);
 
 
-const map = d3.select("body")
+const map = d3.select("#map")
   .append('svg')
   .attr('width', width)
   .attr('height', height)
-  .call(d3.zoom().on("zoom", () => {
-    svg.attr("transform", d3.event.transform)
- }));
-
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", `0 0 ${width} ${height}`)
 
 const mapG = map.append('g')
 const dotG = map.append('g')
 
+// Place Geolocation dots on map
 const placeDots = (parkingLocations) => {
   console.log(parkingLocations)
   const dots = dotG.selectAll('circle')
@@ -103,6 +102,7 @@ const stackedBar = (data) => {
 
 }
 
+// Turn GEOjson into a map and project it 
 const geodata = d3.json(url)
   .then(data => {
     const district = mapG.selectAll('path')
