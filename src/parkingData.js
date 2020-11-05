@@ -19,7 +19,6 @@ const getParkingData = async (url) => {
 const allParkingData = async () => {
   const parkingSpotSpecification = await getParkingData(parkingSpecifications);
   const parkingLocations = await getParkingData(geoLocations);
-
   const amsterdamLocations = getParkingAmsterdamLocations(parkingSpotSpecification, row2, cityCode);
   const combinedData = combineDataSets(amsterdamLocations, parkingLocations);
 
@@ -47,7 +46,6 @@ const combineDataSets = (specifications, geolocations) => {
 
 
 allParkingData();
-
 
 //----------- d3 starts here -------------//
 const url = 'https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN_EXWATER&THEMA=gebiedsindeling';
