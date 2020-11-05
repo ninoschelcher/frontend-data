@@ -69,6 +69,21 @@ Full documentation about my research questions and explanations are [in my wiki]
 
 So for my concept I will look at the charging point options all around Amsterdam and compare them to each other and other garages in Amsterdam that don't have charging points available.
 
+# Concept 🌝
+I've made some sketches to make my concept more clear together with the progress i've made with code right now.
+
+This is the overview you get from Amsterdam where all the locations from the parking garages will be plotted on a map.
+![overview](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/overview.png)
+
+When you click on one of these dots you'll get more data about that specific garage and will zoom in on the map.
+![zoom in](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/interactie.png)
+
+I've changed the data that is displayed in the window a bit more so here is the updated version.
+![interaction](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/zoomin.png)
+
+I've already made the map and plotted the parking garages on the map with D3
+![progress](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/0.1.png)
+
 # Interesting Functional Pattern 💡 
 The most interesting functional pattern is the `formatAnswers()` function. In this function I format all answers into a hex code so it's consistent to use. Some answers needed a # and others were written out like `Blauw` or `Rood`. The functional pattern can be found [here](https://github.com/ninoschelcher/functional-programming/blob/8406b341de0dbf77022d8b12798f4415e8bf4be1/src/surveyexercise/surveyCleanup.js#L17)
 
