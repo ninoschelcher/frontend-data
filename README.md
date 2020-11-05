@@ -72,13 +72,16 @@ So for my concept I will look at the charging point options all around Amsterdam
 # Concept 🌝
 I've made some sketches to make my concept more clear together with the progress i've made with code right now.
 
-This is the overview you get from Amsterdam where all the locations from the parking garages will be plotted on a map.
+This is the overview you get from Amsterdam where all the locations from the parking garages will be plotted on a map. You'll be able to drag and zoom around on the map, it's zoomed in now because im not the bets drawer in the world.
+
 ![overview](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/overview.png)
 
-When you click on one of these dots you'll get more data about that specific garage and will zoom in on the map.
+You'll be able to click on one of these garages on the map, this will open a new window on the side with a bit of visualized data about the specific parking garage, with ofcourse some nice transitions.
+
 ![zoom in](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/interactie.png)
 
-I've changed the data that is displayed in the window a bit more so here is the updated version.
+This is the new and more zoomed-in version of the window that pops up with information, im not really sure if these are the charts i want to use for my visualization but this is how it stands right now.
+
 ![interaction](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/zoomin.png)
 
 I've already made the map and plotted the parking garages on the map with D3
