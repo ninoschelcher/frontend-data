@@ -41,7 +41,9 @@ const combineDataSets = (specifications, geolocations) => {
     return specification;
 
   });
-  return result;
+
+  const filter = result.filter(data => data.areaidlocation !== undefined)
+  return filter;
 }
 
 
@@ -69,6 +71,9 @@ const map = d3.select("body")
   .append('svg')
   .attr('width', width)
   .attr('height', height)
+  .call(d3.zoom().on("zoom", () => {
+    svg.attr("transform", d3.event.transform)
+ }));
 
 
 const mapG = map.append('g')
