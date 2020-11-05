@@ -87,6 +87,9 @@ This is the new and more zoomed-in version of the window that pops up with infor
 I've already made the map and plotted the parking garages on the map with D3
 ![progress](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/0.3.png)
 
+Show capacity and payments against charging points
+![scatter](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/Schermafbeelding%202020-11-05%20om%2012.45.47.png)
+
 # Interesting Functional Pattern 💡 
 The most interesting functional pattern is the `formatAnswers()` function. In this function I format all answers into a hex code so it's consistent to use. Some answers needed a # and others were written out like `Blauw` or `Rood`. The functional pattern can be found [here](https://github.com/ninoschelcher/functional-programming/blob/8406b341de0dbf77022d8b12798f4415e8bf4be1/src/surveyexercise/surveyCleanup.js#L17)
 
