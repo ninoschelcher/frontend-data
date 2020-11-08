@@ -23,7 +23,7 @@ const allParkingData = async () => {
   const combinedData = combineDataSets(amsterdamLocations, parkingLocations);
 
   placeDots(combinedData);
-  stackedBar(amsterdamLocations);
+  circularChart(combinedData);
 }
 
 // Returns an array with parking garages from the specifications dataset that are in Amsterdam and have a charging point available.
@@ -46,28 +46,24 @@ const combineDataSets = (specifications, geolocations) => {
   return filter;
 }
 
-
 allParkingData();
 
 //----------- d3 starts here -------------//
 const url = 'https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN_EXWATER&THEMA=gebiedsindeling';
-const width = 1500;
-const height = 900;
+const width = 800;
+const height = 575;
 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-const title = d3.select('#overlay')
-  .append('h1')
-  .text('Charging your electric car in Amsterdam, is it accessible?')
-
 const projection = d3.geoMercator()
-  .scale(170000)
-  .center([4.80, 52.39])
+  .scale(130000)
+  .center([4.88, 52.35])
+  .translate([width / 2, height / 2]);
 
 const pathGenerator = d3.geoPath()
-  .projection(projection);
+  .projection(projection)
+  
 
-
-const map = d3.select("#map")
+const map = d3.select("#parkinglocations")
   .append('svg')
   .attr('width', width)
   .attr('height', height)
@@ -77,9 +73,7 @@ const map = d3.select("#map")
 const mapG = map.append('g')
 const dotG = map.append('g')
 
-// Place Geolocation dots on map
 const placeDots = (parkingLocations) => {
-  console.log(parkingLocations)
   const dots = dotG.selectAll('circle')
     .data(parkingLocations)
     dots.enter()
@@ -98,11 +92,6 @@ const placeDots = (parkingLocations) => {
     .attr('cursor', 'pointer')
   }
 
-const stackedBar = (data) => {
-
-}
-
-// Turn GEOjson into a map and project it 
 const geodata = d3.json(url)
   .then(data => {
     const district = mapG.selectAll('path')
@@ -116,9 +105,44 @@ const geodata = d3.json(url)
       .attr('stroke-width', '2')
 })
 
-stackedBar();
 
+const circularChart = (data) => {
 
-//Create a stacked bar chart
-//Zoom function?
-//Split up functionality in modules
+const margin = {top: 10, right: 10, bottom: 10, left: 10};
+const width = 900 - margin.left - margin.right;
+const height = 700 - margin.top - margin.bottom;
+const innerRadius = 100;
+const outerRadius = Math.min(width, height) / 2;
+
+const x = d3.scaleBand()
+  .range([0, 2 * Math.PI])    
+  .align(0)                  
+  .domain(data.map(d => { return d.areaidlocation.areadesc }) ); 
+
+const y = d3.scaleRadial()
+  .range([innerRadius, outerRadius])   
+   .domain([0, 2600]); 
+
+const svg = d3.select("#garagecapacity")
+  .append("svg")
+   .attr("width", width + margin.left + margin.right)
+   .attr("height", height + margin.top + margin.bottom)
+   .append("g")
+   .attr("transform", "translate(" + width / 2 + "," + ( height/2-50 )+ ")");
+
+  svg.append("g")
+    .selectAll("path")
+    .data(data)
+    .enter()
+    .append("path")
+      .attr("fill", "#69b3a2")
+      .attr("d", d3.arc()     
+          .innerRadius(innerRadius)
+          .outerRadius(d => { return y(d['capacity']); })
+          .startAngle(d => { return x(d.areaidlocation.areadesc); })
+          .endAngle(d=> { return x(d.areaidlocation.areadesc) + x.bandwidth(); })
+          .padAngle(0.01)
+          .padRadius(innerRadius))
+
+ 
+}
