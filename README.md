@@ -37,8 +37,8 @@ I've also written down some sub questions that are required to answer this quest
   - **AreaId** — Number to identify specific garage, can be combined to find geo location of garage with charging point (number/text)
 
 ### Questions I need to answer without the datasets
-- How big is the average car parking spot? — Required to calculate/visualize how many bikes could fit in a parking spot.
-- How long and wide is the average bicycle? —
+- **How big is the average car parking spot?** — Required to calculate/visualize how many bikes could fit in a parking spot.
+- **How long and wide is the average bicycle?** — Required to calculate how bikes could fit in a parking spot, I will probably take a regular city bike for this.
 
 ### External Datasets?
 - [Amsterdam parking spaces](https://map.data.amsterdam.nl/maps/parkeervakken?REQUEST=Getfeature&VERSION=1.1.0&SERVICE=wfs&TYPENAME=alle_parkeervakken&outputformat=geojson) — This might come in handy if I wanted to use the parking spaces on the street instead of a parking garage because its more relevant to the cyclists who want to park their bike close to home.
