@@ -10,86 +10,44 @@ Now the goal is to find interesting insights in these (37) datasets about parkin
 
 Volkskrant, 2020
 
-
 # Research Question(s) 🔍
-After brainstorming and looking at all the datasets I thought that electric cars was an interesting topic, it's upcoming + a relevent topic since electric cars are 'better' for the environment. So I came up with the following research question:
-- Is electric charging in Amsterdam parking spaces an accessible option?
 
-## Other Research Questions
-### 1. How many charging points are available per parking garage in Amsterdam?
-- **Assumption:** I think that there is a big difference, some garages have a lot while other ones have 1/2 or maybe none. Outside of the centre are probably the ones with more charging points.
+## How many bikes could fit in all parking spots in Amsterdam parking garages? 
 
-- **Dataset:**
-   * [Specificatie Parkeergebied](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s) — Information about parking garages with specifications like Capacity, Charging Points and Disabled Access. 
-   * [GEO Parkeer Garages](https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34) — Geographical data about the specific parking garages.
+I've also written down some sub questions that are required to answer this question
 
-- **Variables:**
-   * **ChargingPointCapacity** – Amount of charging points in a garage (number)
-   * **Location** — Data that consists of Latitude and Longitude (number)
-   * **AreaId** — Number to identify specific garage, can be combined to find geo location of garage with charging point (number/text)
-
-### 2. In which part of Amsterdam is it the easiest/hardest to find a charging point for you car?
-- **Assumption:** This is a tricky one, I have a mixed feelings about it. It's probably harder to find a parking spot in the centre cause more people are working in the centre of Amsterdam but there are a lot of charging spots. But meanwhile in other districts, for example Nieuw-West there are not a lot of charging spots while there are more people buying an electric car. 
- 
-- **Dataset:**
-    * [Specificatie Parkeergebied](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s) — Information about parking garages with specifications like Capacity, Charging Points and Disabled Access. 
-    * [GEO Parkeer Garages](https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34) — Geographical data about the specific parking garages.
+###  Where are the parking garages in Amsterdam?
+- **Datasets:**
+   - [Specificatie Parkeergebied](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s/) — Information about parking garages with specifications like Capacity, Charging Points and Disabled Access.
+   - [GEO Parkeer Garages](https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34/data) — Geographical data about the specific parking garages.
 
 - **Variables:**
-    * **ChargingPointCapacity** – Amount of charging points in a garage (number)
-    * **Location** — Data that consists of Latitude and Longitude (number)
-    * **AreaId** — Number to identify specific garage, can be combined to find geo location of garage with charging point (number/text)
+   - **AreaDesc** — Description/name of parking garage (text)
+   - **Location** — Data that consists of Latitude and Longitude (number)
+   - **AreaId** — Number to identify specific garage, can be combined to find geo location of garage with charging point (number/text)
 
-### 3. Is a parking garage in Amsterdam that has charging points more expensive than one without charging points?
-- **Assumption:** This could be an interesting one, I don't think there is gonna be a big difference. Since there aren't a lot of charging points anyways it wouldn't influence the price.
-
-- **Dataset:**
-    * [Specificatie Parkeergebied](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s) — Information about parking garages with specifications like Capacity, Charging Points and Disabled Access. 
-    * [Tariefdeel](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-TARIEFDEEL/534e-5vdg) — Data about the fares of different parking spaces and the dates it started.
+### What is the capacity of each parking garage?
+- **Datasets:**
+  - [Specificatie Parkeergebied](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s/) — Information about parking garages with specifications like Capacity, Charging Points and Disabled Access.
+  - [GEO Parkeer Garages](https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34/data) — Geographical data about the specific parking garages.
 
 - **Variables:**
-    * **ChargingPointCapacity** – Amount of charging points in a garage (number)
-    * **AreaManagerId** — Identification code for area administrator (number)
-    * **FareCalculationDesc** — Describes how much the fare is of a parking spot (number/text)
+  - **Capacity** — Amount of charging points in a garage (number)
+  - **Location** — Data that consists of Latitude and Longitude (number)
+  - **AreaId** — Number to identify specific garage, can be combined to find geo location of garage with charging point (number/text)
 
-### 4.  Are parking garages in Amsterdam with charging points convenient for people who charge their car during work times?
-- **Assumption:** I think parking garage owners have in mind that they should have their garage open all day long, this makes it easier for people with an electric car to park it there. So I think the garages that are for example open from 06:00-24:00 have charging points available for people to charge their cars during the day.
+### Questions I need to answer without the datasets
+- How big is the average car parking spot? — Required to calculate/visualize how many bikes could fit in a parking spot.
+- How long and wide is the average bicycle? —
 
-- **Dataset:**
-    * [Specificatie Parkeergebied](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s) — Information about parking garages with specifications like Capacity, Charging Points and Disabled Access. 
-   * [Tijdvak](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-TIJDVAK/ixf8-gtwq/data) — Information about opening and closing times of a parking garage.
+### External Datasets?
+- [Amsterdam parking spaces](https://map.data.amsterdam.nl/maps/parkeervakken?REQUEST=Getfeature&VERSION=1.1.0&SERVICE=wfs&TYPENAME=alle_parkeervakken&outputformat=geojson) — This might come in handy if I wanted to use the parking spaces on the street instead of a parking garage because its more relevant to the cyclists who want to park their bike close to home.
 
-- **Variables:**
-    * **ChargingPointCapacity** – Amount of charging points in a garage (number)
-    * **AreaId** — Number to identify specific garage, can be combined to find geo location of garage with charging point (number/text)
-    * **StartTimeTimeFrame** — Specific time the parking space opens. (number)
-    * **EndTimeTimeFrame** — Specific time the parking space closes. (number)
+Full documentation about my research questions and explanations are [in my wiki](https://github.com/ninoschelcher/frontend-data/wiki/Concept-Iteration)
 
-Full documentation about my research questions and explanations are [in my wiki](https://github.com/ninoschelcher/functional-programming/wiki/Brainstorming-&-Research-Questions)
-
-So for my concept I will look at the charging point options all around Amsterdam and compare them to each other and other garages in Amsterdam that don't have charging points available.
+So for my concept I will make a data story where I go through and explain step by step how many bikes could fit into the parking garages in Amsterdam.
 
 # Concept 🌝
-I've made some sketches to make my concept more clear together with the progress i've made with code right now.
-
-This is the overview you get from Amsterdam where all the locations from the parking garages will be plotted on a map. You'll be able to drag and zoom around on the map, it's zoomed in now because im not the bets drawer in the world.
-
-![overview](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/overview.png)
-
-You'll be able to click on one of these garages on the map, this will open a new window on the side with a bit of visualized data about the specific parking garage, with ofcourse some nice transitions.
-
-![zoom in](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/interactie.png)
-
-This is the new and more zoomed-in version of the window that pops up with information, im not really sure if these are the charts i want to use for my visualization but this is how it stands right now.
-
-![interaction](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/zoomin.png)
-
-Show capacity and payments against charging points
-![scatter](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/Schermafbeelding%202020-11-05%20om%2012.45.47.png)
-
-I've already made the map and plotted the parking garages on the map with D3
-![progress](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/concept/0.3.png)
-
 
 
 # Interesting Functional Pattern 💡 
