@@ -16,7 +16,7 @@ Volkskrant, 2020
 
 I've also written down some sub questions that are required to answer this question
 
-###  Where are the parking garages in Amsterdam?
+###  1. Where are the parking garages in Amsterdam?
 - **Datasets:**
    - [Specificatie Parkeergebied](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s/) — Information about parking garages with specifications like Capacity, Charging Points and Disabled Access.
    - [GEO Parkeer Garages](https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34/data) — Geographical data about the specific parking garages.
@@ -26,7 +26,7 @@ I've also written down some sub questions that are required to answer this quest
    - **Location** — Data that consists of Latitude and Longitude (number)
    - **AreaId** — Number to identify specific garage, can be combined to find geo location of garage with charging point (number/text)
 
-### What is the capacity of each parking garage?
+### 2. What is the capacity of each parking garage?
 - **Datasets:**
   - [Specificatie Parkeergebied](https://opendata.rdw.nl/Parkeren/Open-Data-Parkeren-SPECIFICATIES-PARKEERGEBIED/b3us-f26s/) — Information about parking garages with specifications like Capacity, Charging Points and Disabled Access.
   - [GEO Parkeer Garages](https://opendata.rdw.nl/Parkeren/GEO-Parkeer-Garages/t5pc-eb34/data) — Geographical data about the specific parking garages.
