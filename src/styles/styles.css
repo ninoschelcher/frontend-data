@@ -64,10 +64,14 @@ section {
 }
 
 #capacity p {
-    font-size: 1.3em;
+    font-size: 1em;
     max-width: 50%;
     margin: 1.5em auto;
     font-weight: normal;
+}
+
+#capacity h2 {
+    font-size: 2.2em;
 }
 
 #comparison {
@@ -107,11 +111,12 @@ form input {
     height: 40px;
     text-align: left;
     font-family: 'Inter';
-    background-color: black;
+    background-color: darkred;
     color: #fff;
     padding: .5em 1em;
-    border-radius: 30px;
+    border-radius: 5px;
 }
+
 
 @media only screen and (min-width: 1440px) {
     #intro h1 {
