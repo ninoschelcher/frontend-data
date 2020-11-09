@@ -24,7 +24,7 @@ const createMap = (parkingLocations) => {
   const mapG = map.append("g");
   const dotG = map.append("g");
 
-  d3.json(url, function (data) {
+  d3.json(url, data => {
     const district = mapG.selectAll("path").data(data.features);
     district
       .enter()
