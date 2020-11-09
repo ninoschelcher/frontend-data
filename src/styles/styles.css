@@ -11,10 +11,10 @@ body {
     padding: 0;
 }
 
-h1 {
+#intro h1 {
     font-family: "Inter";
     text-align: center;
-    font-size: 3.8em;
+    font-size: 3em;
     margin: 0;
     max-width: 80%;
 }
@@ -45,9 +45,11 @@ section {
     align-items: center;
     flex-direction: column;
     margin-top: 9em;
+    display: none;
 }
 
-#locations p {
+#locations p,
+#comparison p {
     font-size: 1.3em;
     max-width: 50%;
     margin: 1.5em auto;
@@ -68,11 +70,42 @@ section {
     font-weight: normal;
 }
 
+#comparison {
+    display: none;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form div {
+    margin: 0 1em;
+    display: flex;
+    align-items: center;
+}
+
+form div label {
+    font-family: 'Inter';
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+form input {
+    width: 15px;
+    height: 15px;
+}
+
+#parkinglocations h1 {
+    font-size: 3em;
+}
+
 .tooltip {
     position: absolute;
-    text-align: center;
     display: block;
-    height: 38px;
+    height: 40px;
+    text-align: left;
     font-family: 'Inter';
     background-color: black;
     color: #fff;
@@ -81,7 +114,7 @@ section {
 }
 
 @media only screen and (min-width: 1440px) {
-    h1 {
-        font-size: 5em;
+    #intro h1 {
+        font-size: 4em;
     }
 }

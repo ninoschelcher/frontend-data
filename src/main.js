@@ -1,24 +1,26 @@
 import getParkingAmsterdamLocations from "./modules/amsterdamlocations.js";
+import countBikes from "./modules/countbikes.js";
 import getParkingData from "./modules/endpointfetch.js";
 import combineDataSets from "./modules/combinedata.js";
 import createMap from "./modules/geo_map.js";
 import circularChart from "./modules/circularchart.js";
 
 const parkingSpecifications = "https://opendata.rdw.nl/resource/b3us-f26s.json";
-const geoLocations = "https://opendata.rdw.nl/resource/t5pc-eb34.json";
+const geoLocations = "https://opendata.rdw.nl/resource/t5pc-eb34.json?$limit=123456789";
 const row2 = "areaid";
 const cityCode = "363";
 
 const allParkingData = async () => {
   const parkingSpotSpecification = await getParkingData(parkingSpecifications);
   const parkingLocations = await getParkingData(geoLocations);
-  console.log(parkingLocations)
   const amsterdamLocations = getParkingAmsterdamLocations(
     parkingSpotSpecification,
     row2,
     cityCode
   );
   const combinedData = combineDataSets(amsterdamLocations, parkingLocations);
+
+  console.log(countBikes(combinedData));
 
   createMap(combinedData);
   circularChart(combinedData);
