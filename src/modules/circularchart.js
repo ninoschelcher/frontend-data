@@ -1,9 +1,9 @@
 const circularChart = (data) => {
   const margin = { top: 10, right: 10, bottom: 10, left: 10 };
   const width = 900 - margin.left - margin.right;
-  const height = 700 - margin.top - margin.bottom;
+  const height = 800 - margin.top - margin.bottom;
   const innerRadius = 100;
-  const outerRadius = Math.min(width, height) / 2;
+  const outerRadius = Math.min(width, height) / 1.5;
 
   const x = d3
     .scaleBand()
@@ -28,7 +28,7 @@ const circularChart = (data) => {
     .append("g")
     .attr(
       "transform",
-      "translate(" + width / 2 + "," + (height / 2 - 50) + ")"
+      "translate(" + width / 2 + "," + (height / 2 - 150) + ")"
     );
 
   svg

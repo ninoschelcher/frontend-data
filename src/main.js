@@ -12,6 +12,7 @@ const cityCode = "363";
 const allParkingData = async () => {
   const parkingSpotSpecification = await getParkingData(parkingSpecifications);
   const parkingLocations = await getParkingData(geoLocations);
+  console.log(parkingLocations)
   const amsterdamLocations = getParkingAmsterdamLocations(
     parkingSpotSpecification,
     row2,
