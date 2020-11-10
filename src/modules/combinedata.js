@@ -1,3 +1,4 @@
+//Het voorbeeld van Rijk gebruikkt om de 2 datasets te combineren.
 const combineDataSets = (specifications, geolocations) => {
   const result = specifications.map((specification) => {
     const geolocation = geolocations.find(
@@ -13,3 +14,6 @@ const combineDataSets = (specifications, geolocations) => {
 };
 
 export default combineDataSets;
+
+
+//  return data.areaidlocation.areadesc.replace("(Amsterdam)", "");

@@ -19,9 +19,7 @@ const allParkingData = async () => {
     cityCode
   );
   const combinedData = combineDataSets(amsterdamLocations, parkingLocations);
-
-  console.log(countBikes(combinedData));
-
+  
   createMap(combinedData);
   circularChart(combinedData);
 };

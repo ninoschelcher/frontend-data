@@ -9,6 +9,8 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
+    background-color: #07144F;
+    color: #fff;
 }
 
 #intro h1 {
@@ -24,9 +26,6 @@ h2 {
     margin: 0;
 }
 
-section {
-    height: 100vh;
-}
 
 #intro {
     display: flex;
@@ -56,11 +55,22 @@ section {
     font-weight: normal;
 }
 
+#capacityfilter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+#capacityfilter label {
+    margin-bottom: .5em;
+}
+
 #capacity {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 9em;
+    margin-top: 4em;
 }
 
 #capacity p {
@@ -76,6 +86,10 @@ section {
 
 #comparison {
     display: none;
+}
+
+#capacity>label:first-of-type {
+    margin-bottom: 1em;
 }
 
 form {

@@ -65,8 +65,23 @@
             Amsterdam is famous for it's bikes, but there are a lot of parking garages available for cars as well.
             What if alle these cars were replaced by bikes?
         </p>
-        <label><input id="sort" type="checkbox"> Sort values</label>
+        <div id="capacityfilter">
+            <label for="mincapacity">Minimum Capacity</label>
+            <input id="mincapacity" name="mincapacity" type="text">
+        </div>
+        <label><input id="charging" name="charging" type="checkbox">Only show garages with charging points</label>
+        <label><input id="sort" name="sort" type="checkbox">Sort everything!</label>
+        <div style="display: none">
+            <label for="bars">Data</label>
+            <select name="bars" id="bars">
+                <option value="car">Car capacity</option>
+                <option value="bike">Charging capacity</option>
+                <option value="bike">By district</option>
+            </select>
+        </div>
         <div id="garagecapacity"></div>
+        <p>Based on <a href="https://www.d3-graph-gallery.com/graph/circular_barplot_basic.html">Circular Barplot
+                Example</a></p>
     </section>
     <!-- <section id="comparison">
         <h2>
@@ -80,6 +95,7 @@
     <section id="final"></section> -->
     <script type="module" src="main.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
 </body>
 
 </html>
