@@ -14,49 +14,8 @@
             How many <span>bikes</span> could fit in all <span>parking spots</span> in <span>Amsterdam</span> parking
             garages?
         </h1>
-    </section>
-    <section id="locations">
-        <div>
-            <h2>
-                How many bikes would fit in the Amsterdam parking garages?
-            </h2>
-            <p>
-                Amsterdam is famous for it's bikes, but there are a lot of parking garages available for cars as well.
-                The locations of these parking garages are pretty divided over Amsterdam as you can see.
-            </p>
-            <form action="">
-                <div>
-                    <input type="checkbox" id="noord" name="noord" value="Noord">
-                    <label for="noord"> Noord</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="zuid" name="zuid" value="Zuid">
-                    <label for="zuid"> Zuid</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="centrum" name="centrum" value="Centrum">
-                    <label for="centrum"> Centrum</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="west" name="west" value="West">
-                    <label for="west"> West</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="zuid-oost" name="zuid-oost" value="Zuid-Oost">
-                    <label for="zuid-oost"> Zuid-Oost</label>
-                </div>
-                <div>
-                    <label for="dots">Dots</label>
-                    <select name="dots-sort" id="dots-sort">
-                        <option value="location">On location</option>
-                        <option value="capacity">On capacity</option>
-                    </select>
-                </div>
-            </form>
-        </div>
-        <div id="parkinglocations">
-        </div>
     </section> -->
+
     <section id="capacity">
         <h2>
             How many bikes would fit in the Amsterdam parking garages?
@@ -66,11 +25,13 @@
             What if alle these cars were replaced by bikes?
         </p>
         <div id="capacityfilter">
-            <label for="mincapacity">Minimum Capacity</label>
-            <input id="mincapacity" name="mincapacity" type="text">
+            <label for="mincapacity">Show garage with minimum capacity:</label>
+            <input id="mincapacity" name="mincapacity" type="number">
         </div>
-        <label><input id="charging" name="charging" type="checkbox">Only show garages with charging points</label>
-        <label><input id="sort" name="sort" type="checkbox">Sort everything!</label>
+        <div>
+            <label><input id="charging" name="charging" type="checkbox">Only show garages with charging points</label>
+            <label><input id="sort" name="sort" type="checkbox">Sort everything!</label>
+        </div>
         <div style="display: none">
             <label for="bars">Data</label>
             <select name="bars" id="bars">
@@ -83,7 +44,7 @@
         <p>Based on <a href="https://www.d3-graph-gallery.com/graph/circular_barplot_basic.html">Circular Barplot
                 Example</a></p>
     </section>
-    <!-- <section id="comparison">
+    <section id="comparison">
         <h2>
             How many bikes would fit in the Amsterdam parking garages?
         </h2>
@@ -92,7 +53,10 @@
             What if alle these cars were replaced by bikes?
         </p>
     </section>
-    <section id="final"></section> -->
+    <section id="locations">
+        <div id="parkinglocations">
+        </div>
+    </section>
     <script type="module" src="main.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>

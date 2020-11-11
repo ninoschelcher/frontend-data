@@ -21,12 +21,6 @@ body {
     max-width: 80%;
 }
 
-h2 {
-    font-size: 3.5em;
-    margin: 0;
-}
-
-
 #intro {
     display: flex;
     justify-content: center;
@@ -44,7 +38,6 @@ h2 {
     align-items: center;
     flex-direction: column;
     margin-top: 9em;
-    display: none;
 }
 
 #locations p,
@@ -73,15 +66,18 @@ h2 {
     margin-top: 4em;
 }
 
-#capacity p {
+#capacity p,
+#locations p {
     font-size: 1em;
     max-width: 50%;
     margin: 1.5em auto;
     font-weight: normal;
 }
 
-#capacity h2 {
+#capacity h2,
+#locations h2 {
     font-size: 2.2em;
+    margin: 0;
 }
 
 #comparison {
@@ -110,9 +106,12 @@ form div label {
     margin-right: 5px;
 }
 
-form input {
-    width: 15px;
-    height: 15px;
+input[type="number"] {
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 3px;
 }
 
 #parkinglocations h1 {
