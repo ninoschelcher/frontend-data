@@ -76,6 +76,8 @@ const makeCircularBarPlot = (parkingData) => {
         .startAngle((d) => x(d.name))
         .endAngle((d) => x(d.name) + x.bandwidth())
         .padAngle(0.05)
+        .padRadius(innerRadius)
+    )
     .on("mouseover", (d) => {
       tooltip.transition().duration(800).style("opacity", 0.9);
       tooltip
