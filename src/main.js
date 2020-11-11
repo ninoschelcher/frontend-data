@@ -21,9 +21,9 @@ const allParkingData = async () => {
     row2,
     cityCode
   );
-
   const combinedData = combineDataSets(amsterdamLocations, parkingLocations);
 
+  //Functions to make charts
   makeBarChart(combinedData)
   makeMap(combinedData);
   makeCircularBarPlot(combinedData);

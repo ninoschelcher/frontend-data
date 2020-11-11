@@ -3,8 +3,6 @@ const makeCircularBarPlot = (parkingData) => {
   const margin = { top: 0, right: 10, bottom: 10, left: 10 };
   const width = 1400 - margin.left - margin.right;
   const height = 1000 - margin.top - margin.bottom;
-  const barHeight = height / 2 - 40;
-
   const innerRadius = 80;
   const outerRadius = Math.min(width, height) / 1;
 
@@ -15,40 +13,43 @@ const makeCircularBarPlot = (parkingData) => {
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-  //Define x scale
+  //Define x scale and base it uponn name
   const x = d3
     .scaleBand()
     .range([0, 2 * Math.PI])
     .domain(parkingData.map((parking) => parking.name));
 
-  //Define y scale
+  //Define y scale and base it on capacity and divide it otherwise the bars were way too big
   const y = d3
     .scaleRadial()
     .range([innerRadius, outerRadius])
     .domain([0, d3.max(parkingData.map((parking) => parking.capacity)) / 0.4]);
 
-  // Initialize SVG
+  //Append svg to div and give it a width and height
   const svg = d3
     .select("#garagecapacity")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom);
 
-  //Define capacity amounts that are at the bottom of the chart
+  //Select div from page
   const potentialCapacity = d3.select("#garagecapacity").append("div");
+
+  // Add a h3 to div for car capacity
   const carCapacity = potentialCapacity
     .append("h3")
     .text("Car Capacity: ")
     .append("p")
     .attr("class", "carcap");
 
+  // Add a h3 to div for bike capacity
   const bikeCapacity = potentialCapacity
     .append("h3")
     .text("Bike Capacity: ")
     .append("p")
     .attr("class", "bikecap");
 
-  //Make a group inside the svg
+  //Make a group inside the svg and translate the position
   const group = svg
     .append("g")
     .attr(
@@ -56,7 +57,7 @@ const makeCircularBarPlot = (parkingData) => {
       "translate(" + width / 2 + "," + (height / 2 - 100) + ")"
     );
 
-  //Draw the arcs + tooltip
+  //Draw the arcs from the chart + add the transition tooltips
   const bars = group
     .append("g")
     .selectAll("path")
@@ -98,16 +99,19 @@ const makeCircularBarPlot = (parkingData) => {
     //   ? parkingData.filter((parking) => parking.chargingpoints > 0)
     //   : dataSelection;
 
+    //check if input checked is true and filter the data based on that
     const dataSelection = checkInput
       ? parkingData.filter((parking) => parking.chargingpoints > 0)
       : parkingData;
 
+    //Update the domains
     x.domain(dataSelection.map((parking) => parking.name));
     y.domain([
       0,
       d3.max(dataSelection.map((parking) => parking.capacity)) / 0.4,
     ]);
 
+    // Select all bars and put the new filtered data in.
     const newBars = group.selectAll("path").data(dataSelection);
     // const color = sortedData == null ? "red" : "#A5D878";
 
@@ -123,7 +127,7 @@ const makeCircularBarPlot = (parkingData) => {
           .padAngle(0.05)
           .padRadius(innerRadius)
       )
-      .attr("fill", 'red');
+      .attr("fill", "red");
 
     newBars
       .enter()
@@ -148,14 +152,16 @@ const makeCircularBarPlot = (parkingData) => {
     newBars.exit().remove();
   }
 
-  //Function that filters capacity based on input
+  //Function that filters capacity based on user input
   function filterCapacity() {
+    //Check the value from the input field
     const input = parseInt(this.value);
 
+    //Make 2 variables that are being updated on every new input
     let carCountCapacity = 0;
     let bikeCountCapacity = 0;
 
-    //Filter data based on user input
+    //Filter the dataset based on user input + add up the capacity from the entries that are left
     const dataSelect = parkingData.filter((parking) => {
       if (parking.capacity >= input) {
         carCountCapacity += parseInt(parking.capacity);
@@ -215,10 +221,12 @@ const makeCircularBarPlot = (parkingData) => {
     d3.select(".carcap").text(carCountCapacity + " car spots");
     d3.select(".bikecap").text(bikeCountCapacity + " bike spots");
 
+    //Remove all bars that didnt meet the filter
     filteredBars.exit().remove();
   }
 
   function sortParkingCapacity() {
+    //Check if input is checked
     const checkSortInput = this ? this.checked : false;
 
     if (checkSortInput) {
