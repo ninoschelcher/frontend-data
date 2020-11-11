@@ -121,7 +121,7 @@ input[type="number"] {
 .tooltip {
     position: absolute;
     display: block;
-    height: 40px;
+    height: 60px;
     text-align: left;
     font-family: 'Inter';
     background-color: darkred;
@@ -130,6 +130,9 @@ input[type="number"] {
     border-radius: 5px;
 }
 
+#barchart {
+    display: none;
+}
 
 @media only screen and (min-width: 1440px) {
     #intro h1 {

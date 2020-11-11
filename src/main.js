@@ -4,6 +4,7 @@ import getParkingData from "./modules/fetchparkingdata.js";
 import combineDataSets from "./modules/combinedata.js";
 import makeMap from "./modules/map.js";
 import makeCircularBarPlot from "./modules/circularchart.js";
+import makeBarChart from './modules/barchart.js';
 
 //Variables for datasets and filtering rows //
 const parkingSpecifications = "https://opendata.rdw.nl/resource/b3us-f26s.json";
@@ -22,9 +23,8 @@ const allParkingData = async () => {
   );
 
   const combinedData = combineDataSets(amsterdamLocations, parkingLocations);
-  console.log(combinedData)
 
-  
+  makeBarChart(combinedData)
   makeMap(combinedData);
   makeCircularBarPlot(combinedData);
 };

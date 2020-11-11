@@ -14,8 +14,8 @@ const combineDataSets = (specifications, geolocations) => {
   const newDataset = locationFilter.map(data => ({
     name: data.location.areadesc,
     id: data.areaid,
-    capacity: data.capacity,
-    chargingpoints: data.chargingpointcapacity,
+    capacity: parseInt(data.capacity),
+    chargingpoints: parseInt(data.chargingpointcapacity),
     coordinates: data.location.location
   }))
 

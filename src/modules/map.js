@@ -1,3 +1,4 @@
+import filterCapacity from './circularchart.js'
 const makeMap = (parkingLocations) => {
   const url =
     "https://maps.amsterdam.nl/open_geodata/geojson.php?KAARTLAAG=GEBIED_STADSDELEN_EXWATER&THEMA=gebiedsindeling";
@@ -75,13 +76,12 @@ const makeMap = (parkingLocations) => {
           d.coordinates.latitude,
         ])[1]
     )
-    .attr("r", "14")
+    .attr("r", (d) => d.capacity / 50)
     .attr("opacity", "1")
     .attr("stroke", "white")
     .attr("fill", "black")
     .attr("fill-opacity", "0.4")
     .attr("cursor", "pointer")
-
     .on("click", (d) => {
       divTooltip.transition().duration(200).style("opacity", 0.9);
       divTooltip
@@ -89,6 +89,7 @@ const makeMap = (parkingLocations) => {
         .style("left", d3.event.pageX + "px")
         .style("top", d3.event.pageY - 28 + "px");
     });
+
 };
 
 export default makeMap;

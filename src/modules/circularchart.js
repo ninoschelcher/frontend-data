@@ -3,8 +3,10 @@ const makeCircularBarPlot = (parkingData) => {
   const margin = { top: 0, right: 10, bottom: 10, left: 10 };
   const width = 1400 - margin.left - margin.right;
   const height = 1000 - margin.top - margin.bottom;
+  const barHeight = height / 2 - 40;
+
   const innerRadius = 80;
-  const outerRadius = Math.min(width, height) / 1.5;
+  const outerRadius = Math.min(width, height) / 1;
 
   // Tooltip initialization
   const tooltip = d3
@@ -61,7 +63,6 @@ const makeCircularBarPlot = (parkingData) => {
     .data(parkingData)
     .enter()
     .append("path")
-    .attr("id", "arcs")
     .attr("stroke", "white")
     .attr("stroke-width", "2")
     .attr("cursor", "pointer")
@@ -75,42 +76,52 @@ const makeCircularBarPlot = (parkingData) => {
         .startAngle((d) => x(d.name))
         .endAngle((d) => x(d.name) + x.bandwidth())
         .padAngle(0.05)
-        .padRadius(innerRadius)
-    )
-    .on("click", (d) => {
+    .on("mouseover", (d) => {
       tooltip.transition().duration(800).style("opacity", 0.9);
       tooltip
-        .text("Name: " + d.name)
+        .html("Name: " + d.name + "<br />" + "Capacity: " + d.capacity)
         .style("left", d3.event.pageX + "px")
         .style("top", d3.event.pageY - 28 + "px");
+    })
+    .on("mouseexit", (d) => {
+      tooltip.transition().duration(500).style("opacity", 0);
     });
 
   //Function that changes the data from normal capacity -> electric charging points
-  function updateValues() {
+  function updateValues(sortedData = null) {
     const checkInput = this ? this.checked : false;
+
+    // let dataSelection = sortedData == null ? parkingData : sortedData;
+    // dataSelection = checkInput
+    //   ? parkingData.filter((parking) => parking.chargingpoints > 0)
+    //   : dataSelection;
+
     const dataSelection = checkInput
       ? parkingData.filter((parking) => parking.chargingpoints > 0)
       : parkingData;
 
-    console.log(dataSelection);
-
     x.domain(dataSelection.map((parking) => parking.name));
-    y.domain([0, d3.max(dataSelection.map((parking) => parking.capacity))]);
+    y.domain([
+      0,
+      d3.max(dataSelection.map((parking) => parking.capacity)) / 0.4,
+    ]);
 
     const newBars = group.selectAll("path").data(dataSelection);
+    // const color = sortedData == null ? "red" : "#A5D878";
 
-    newBars.attr(
-      "d",
-      d3
-        .arc()
-        .innerRadius(innerRadius)
-        .outerRadius((d) => y(d["capacity"]))
-        .startAngle((d) => x(d.name))
-        .endAngle((d) => x(d.name) + x.bandwidth())
-        .padAngle(0.05)
-        .padRadius(innerRadius)
-    )
-    .attr("fill", "red");
+    newBars
+      .attr(
+        "d",
+        d3
+          .arc()
+          .innerRadius(innerRadius)
+          .outerRadius((d) => y(d["capacity"]))
+          .startAngle((d) => x(d.name))
+          .endAngle((d) => x(d.name) + x.bandwidth())
+          .padAngle(0.05)
+          .padRadius(innerRadius)
+      )
+      .attr("fill", 'red');
 
     newBars
       .enter()
@@ -121,12 +132,16 @@ const makeCircularBarPlot = (parkingData) => {
         d3
           .arc()
           .innerRadius(innerRadius)
-          .outerRadius((d) => y(d["chargingpointcapacity"]))
+          .outerRadius((d) => y(d["chargingcapacity"]))
           .startAngle((d) => x(d.name))
           .endAngle((d) => x(d.name) + x.bandwidth())
           .padAngle(0.05)
           .padRadius(innerRadius)
-      );
+      )
+      .attr("stroke", "white")
+      .attr("stroke-width", "2")
+      .attr("cursor", "pointer")
+      .attr("fill", "#A5D878");
 
     newBars.exit().remove();
   }
@@ -189,15 +204,10 @@ const makeCircularBarPlot = (parkingData) => {
       .on("mouseover", (d) => {
         tooltip.transition().duration(800).style("opacity", 0.9);
         tooltip
-          .text("Name: " + d.name)
+          .html("Name: " + d.name + "<br />" + "Capacity: " + d.capacity)
           .style("left", d3.event.pageX + "px")
           .style("top", d3.event.pageY - 28 + "px");
-      })
-      .on("mouseexit", function(d) {		
-        div.transition()		
-            .duration(500)		
-            .style("opacity", 0);	
-    });
+      });
 
     //Update the counter under the chart based on current shown charts.
     d3.select(".carcap").text(carCountCapacity + " car spots");
@@ -214,6 +224,15 @@ const makeCircularBarPlot = (parkingData) => {
         .selectAll("path")
         .sort((a, b) => d3.descending(a.capacity, b.capacity));
     }
+
+    // if (checkSortInput) {
+    //   const sorted = [...parkingData].sort((a, b) => {
+    //     return d3.descending(a.capacity, b.capacity);
+    //   });
+    //   updateValues(sorted);
+    // } else {
+    //   updateValues(parkingData);
+    // }
   }
 
   // Input declarations in chart.
