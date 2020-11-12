@@ -38,6 +38,8 @@ I've also written down some sub questions that are required to answer this quest
   - **Location** — Data that consists of Latitude and Longitude (number)
   - **AreaId** — Number to identify specific garage, can be combined to find geo location of garage with charging point (number/text)
 
+I'm gonna combine these 2 datasets, there will probably be some entries that dont exist in both datasets which means that they won't be taken into the final visualization.
+
 ### Questions I need to answer without the datasets
 - **How big is the average car parking spot?** — Required to calculate/visualize how many bikes could fit in a parking spot.
 - **How long and wide is the average bicycle?** — Required to calculate how bikes could fit in a parking spot, I will probably take a regular city bike for this.
@@ -51,6 +53,8 @@ So for my concept I will make a data story where I go through and explain step b
 
 # Concept 🌝
 The live page can be viewed [on this page](https://ninoschelcher.github.io/frontend-data/src/index.html)
+
+The goal for a visualization for Frontend Data was to show the amount of garages and capacity within them. I've done this through 
 ![concept screenshot](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/conceptscreenshot.png)
 
 
