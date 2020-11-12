@@ -87,9 +87,9 @@ const makeCircularBarPlot = (parkingData) => {
   bars.on("mouseover", (d) => {
     tooltip.transition().duration(800).style("opacity", 0.9);
     tooltip
-      .html("Name: " + d.name + "<br />" + "Capacity: " + d.capacity)
-      .style("left", d3.event.pageX + "px")
-      .style("top", d3.event.pageY - 28 + "px");
+    .html("Name: " + d.name + "<br />" + "Car Capacity: " + d.capacity + "<br />" + "Possible Bike Capacity: " + d.capacity * 6)     
+    .style("left", d3.event.pageX + "px")
+    .style("top", d3.event.pageY - 28 + "px");
   });
   bars.on("mouseexit", (d) => {
     tooltip.transition().duration(500).style("opacity", 0);
@@ -219,7 +219,7 @@ const makeCircularBarPlot = (parkingData) => {
       .on("mouseover", (d) => {
         tooltip.transition().duration(800).style("opacity", 0.9);
         tooltip
-          .html("Name: " + d.name + "<br />" + "Capacity: " + d.capacity)
+          .html("Name: " + d.name + "<br />" + "Car Capacity: " + d.capacity + "<br />" + "Possible Bike Capacity: " + d.capacity * 6)
           .style("left", d3.event.pageX + "px")
           .style("top", d3.event.pageY - 28 + "px");
       })
