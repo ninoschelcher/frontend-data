@@ -16,8 +16,7 @@ const makeCircularBarPlot = (parkingData) => {
   const title = d3
     .select("#garagecapacity")
     .append("h2")
-    .html("Amsterdam" +  "<br />" + "Garages")
-
+    .html("Amsterdam" + "<br />" + "Garages");
 
   //Define x scale and base it uponn name
   const x = d3
@@ -84,17 +83,17 @@ const makeCircularBarPlot = (parkingData) => {
         .endAngle((d) => x(d.name) + x.bandwidth())
         .padAngle(0.05)
         .padRadius(innerRadius)
-    )
-    .on("mouseover", (d) => {
-      tooltip.transition().duration(800).style("opacity", 0.9);
-      tooltip
-        .html("Name: " + d.name + "<br />" + "Capacity: " + d.capacity)
-        .style("left", d3.event.pageX + "px")
-        .style("top", d3.event.pageY - 28 + "px");
-    })
-    .on("mouseexit", (d) => {
-      tooltip.transition().duration(500).style("opacity", 0);
-    });
+    );
+  bars.on("mouseover", (d) => {
+    tooltip.transition().duration(800).style("opacity", 0.9);
+    tooltip
+      .html("Name: " + d.name + "<br />" + "Capacity: " + d.capacity)
+      .style("left", d3.event.pageX + "px")
+      .style("top", d3.event.pageY - 28 + "px");
+  });
+  bars.on("mouseexit", (d) => {
+    tooltip.transition().duration(500).style("opacity", 0);
+  });
 
   //Function that changes the data from normal capacity -> electric charging points
   function updateValues(sortedData = null) {
@@ -215,13 +214,17 @@ const makeCircularBarPlot = (parkingData) => {
           .endAngle((d) => x(d.name) + x.bandwidth())
           .padAngle(0.05)
           .padRadius(innerRadius)
-      )
+      );
+    filteredBars
       .on("mouseover", (d) => {
         tooltip.transition().duration(800).style("opacity", 0.9);
         tooltip
           .html("Name: " + d.name + "<br />" + "Capacity: " + d.capacity)
           .style("left", d3.event.pageX + "px")
           .style("top", d3.event.pageY - 28 + "px");
+      })
+      .on("mouseexit", (d) => {
+        tooltip.transition().duration(500).style("opacity", 0);
       });
 
     //Update the counter under the chart based on current shown charts.

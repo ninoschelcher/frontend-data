@@ -112,6 +112,7 @@ input[type="number"] {
     border: none;
     border-radius: 4px;
     margin-top: 3px;
+    padding-left: 8px;
 }
 
 #parkinglocations h1 {
