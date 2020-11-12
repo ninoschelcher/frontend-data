@@ -70,19 +70,6 @@ The final result is a bit different from what I intended to, the 4 sketches I ma
 # Interesting Functional Pattern 💡 
 The most interesting functional pattern is the `formatAnswers()` function. In this function I format all answers into a hex code so it's consistent to use. Some answers needed a # and others were written out like `Blauw` or `Rood`. The functional pattern can be found [here](https://github.com/ninoschelcher/functional-programming/blob/8406b341de0dbf77022d8b12798f4415e8bf4be1/src/surveyexercise/surveyCleanup.js#L17)
 
-# Installation Guide 💻
-There are a few steps required to do so you can get the program up and running on your own machine!
-
-### Clone project
-- Clone this repo to your local machine using `$ git clone https://github.com/ninoschelcher/frontend-data.git`
-- Go to the directory by typing `$ cd frontend-data`
-
-### Install packages
-- Install all required packages by using `$ npm install`
-
-### Run project
-- type `$ npm run test` to start the program
-
 # Sources & Acknowledgements 🙋
 - [Laurens](https://github.com/Razpudding) — For [this](https://github.com/ninoschelcher/functional-programming/blob/5f093897016b1c53d41cc6bf522d4afe2c28a3d6/parkingData.js#L9) function to fetch data. 
 - [Max Hauser](https://github.com/max-hauser) — For regular feedback throughout the project.
