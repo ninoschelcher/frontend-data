@@ -38,7 +38,7 @@ I've also written down some sub questions that are required to answer this quest
   - **Location** — Data that consists of Latitude and Longitude (number)
   - **AreaId** — Number to identify specific garage, can be combined to find geo location of garage with charging point (number/text)
 
-I'm gonna combine these 2 datasets, there will probably be some entries that dont exist in both datasets which means that they won't be taken into the final visualization.
+I'm gonna combine these 2 datasets, there will probably be some entries that dont exist in both datasets which means that they won't be taken into the final visualization. This process is better described [on this page](https://github.com/ninoschelcher/frontend-data/wiki/RDW-data)
 
 ### Questions I need to answer without the datasets
 - **How big is the average car parking spot?** — Required to calculate/visualize how many bikes could fit in a parking spot.
