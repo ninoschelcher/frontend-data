@@ -85,13 +85,13 @@ const makeCircularBarPlot = (parkingData) => {
         .padRadius(innerRadius)
     );
   bars.on("mouseover", (d) => {
-    tooltip.transition().duration(800).style("opacity", 0.9);
+    tooltip.transition().duration(500).style("opacity", 0.9);
     tooltip
     .html("Name: " + d.name + "<br />" + "Car Capacity: " + d.capacity + "<br />" + "Possible Bike Capacity: " + d.capacity * 6)     
-    .style("left", d3.event.pageX + "px")
-    .style("top", d3.event.pageY - 28 + "px");
-  });
-  bars.on("mouseexit", (d) => {
+    .style("left", d3.event.pageX + 10 + "px")
+    .style("top", d3.event.pageY - 70 + "px");
+  })
+  bars.on("mouseout", (d) => {
     tooltip.transition().duration(500).style("opacity", 0);
   });
 
