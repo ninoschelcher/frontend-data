@@ -56,8 +56,10 @@ The live page can be viewed [on this page](https://ninoschelcher.github.io/front
 
 The goal for a visualization for Frontend Data was to show the amount of garages and capacity within them. I've done this through a circular bar plot visualization, every bar is a garage. Interaction is done through input fields such as checkboxes and input fields that updates the chart. I also wanted to update the map I've put under the circular bar plot based on interaction from the first chart but I couldn't really figure that out in the time I had still left.
 
-![concept screenshot](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/conceptscreenshot.png)
+### Example for my concept
+I've based my final visualization on [this example from d3 gallery](https://www.d3-graph-gallery.com/graph/circular_barplot_basic.html) because this gave me a good start to building a visualization. 
 
+![concept screenshot](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/conceptscreenshot.png)
 
 # Interesting Functional Pattern 💡 
 The most interesting functional pattern is the `formatAnswers()` function. In this function I format all answers into a hex code so it's consistent to use. Some answers needed a # and others were written out like `Blauw` or `Rood`. The functional pattern can be found [here](https://github.com/ninoschelcher/functional-programming/blob/8406b341de0dbf77022d8b12798f4415e8bf4be1/src/surveyexercise/surveyCleanup.js#L17)
