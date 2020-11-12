@@ -54,10 +54,12 @@ So for my concept I will make a data story where I go through and explain step b
 # Concept 🌝
 The live page can be viewed [on this page](https://ninoschelcher.github.io/frontend-data/src/index.html)
 
-The goal for a visualization for Frontend Data was to show the amount of garages and capacity within them. I've done this through a circular bar plot visualization, every bar is a garage. Interaction is done through input fields such as checkboxes and input fields that updates the chart. I also wanted to update the map I've put under the circular bar plot based on interaction from the first chart but I couldn't really figure that out in the time I had still left.
+The goal for a visualization for Frontend Data was to show the amount of garages and capacity within them. I've done this through a circular bar plot visualization, every bar is a garage. Interaction is done through input fields such as checkboxes and input fields that updates the chart. This interaction also updates the texts under the visualization that shows the amount of capacity for cars and how much bikes would probably fit in these garages.
+
+I also wanted to update the map I've put under the circular bar plot based on interaction from the first chart but I couldn't really figure that out in the time I had still left.
 
 ### Example for my concept
-I've based my final visualization on [this example from d3 gallery](https://www.d3-graph-gallery.com/graph/circular_barplot_basic.html) because this gave me a good start to building a visualization. 
+I've based my final visualization on [this example from d3 gallery](https://www.d3-graph-gallery.com/graph/circular_barplot_basic.html) because this gave me a good start to building a visualization. The things I've added is stuff like interactions and transitions to make it my own.
 
 ![concept screenshot](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/conceptscreenshot.png)
 
