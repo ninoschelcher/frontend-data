@@ -16,7 +16,7 @@ const makeCircularBarPlot = (parkingData) => {
   const title = d3
     .select("#garagecapacity")
     .append("h2")
-    .html("Amsterdam" + "<br />" + "Garages");
+    .html("Amsterdam" + "<br />" + "Garages")
 
   //Define x scale and base it uponn name
   const x = d3
@@ -165,6 +165,7 @@ const makeCircularBarPlot = (parkingData) => {
     //Make 2 variables that are being updated on every new input
     let carCountCapacity = 0;
     let bikeCountCapacity = 0;
+    let garageCapacity = 0;
 
     //Filter the dataset based on user input + add up the capacity from the entries that are left
     // Source: https://vizhub.com/Razpudding/c2a9c9b4fde84816931c404951c79873
@@ -172,10 +173,20 @@ const makeCircularBarPlot = (parkingData) => {
       if (parking.capacity >= input) {
         carCountCapacity += parseInt(parking.capacity);
         bikeCountCapacity += parseInt(parking.capacity) * 6;
+        garageCapacity++
         return parking;
-      }
+      } 
     });
 
+    if (garageCapacity > 0) {
+      title
+       .html(garageCapacity + " Garages " + "<br />")
+       .style("transform", "translate(-10px, 360px)")
+    } else {
+      title 
+      .html("No Garages");
+    }
+    
     //Update domains on the filtered data from user input
     x.domain(dataSelect.map((parking) => parking.name));
     y.domain([0, d3.max(parkingData.map((parking) => parking.capacity)) / 0.4]);
