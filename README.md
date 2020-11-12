@@ -58,8 +58,8 @@ The most interesting functional pattern is the `formatAnswers()` function. In th
 There are a few steps required to do so you can get the program up and running on your own machine!
 
 ### Clone project
-- Clone this repo to your local machine using `$ git clone https://github.com/ninoschelcher/functional-programming.git`
-- Go to the directory by typing `$ cd functional-programming`
+- Clone this repo to your local machine using `$ git clone https://github.com/ninoschelcher/frontend-data.git`
+- Go to the directory by typing `$ cd frontend-data`
 
 ### Install packages
 - Install all required packages by using `$ npm install`
