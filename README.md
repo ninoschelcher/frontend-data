@@ -12,7 +12,7 @@ Volkskrant, 2020
 
 # Research Question(s) 🔍
 
-Bikes in Amsterdam came up in my head that there are a lot of bikes in Amsterdam. Why wouldn't it be interesting to know how many bikes could fit into the space that parking garages have right now? So I came up with the following research question.
+Bikes in Amsterdam came up in my head during my brainstorm, there are a lot of them in Amsterdam. Why wouldn't it be interesting to know how many bikes could fit into the space that parking garages have right now? So I came up with the following research question.
 
 ## How many bikes could fit in all parking spots in Amsterdam parking garages? 
 
