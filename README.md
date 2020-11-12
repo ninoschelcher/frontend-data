@@ -63,6 +63,10 @@ I've based my final visualization on [this example from d3 gallery](https://www.
 
 ![concept screenshot](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/conceptscreenshot.png)
 
+The final result is a bit different from what I intended to, the 4 sketches I made in [concept iteration](https://github.com/ninoschelcher/frontend-data/wiki/Concept-Iteration) are probably gonna be feasible in the next 2 weeks where I have more time to work on the visualization and turn it into a data story with multiple charts.
+
+![concept sketch](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/capacity.png)
+
 # Interesting Functional Pattern 💡 
 The most interesting functional pattern is the `formatAnswers()` function. In this function I format all answers into a hex code so it's consistent to use. Some answers needed a # and others were written out like `Blauw` or `Rood`. The functional pattern can be found [here](https://github.com/ninoschelcher/functional-programming/blob/8406b341de0dbf77022d8b12798f4415e8bf4be1/src/surveyexercise/surveyCleanup.js#L17)
 
