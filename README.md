@@ -1,10 +1,10 @@
 # Frontend-data
-This repository contains my process of creating a interactive visualization for The Volkskrant. Full documentation & process can be found [in my wiki](https://github.com/ninoschelcher/frontend-data/wiki)
+This repository contains my process of creating a interactive visualization for The Volkskrant. Full documentation & process can be found [in my wiki](https://github.com/ninoschelcher/frontend-data/wiki).
 
 # The Assignment 📝
 During this project we're working together with The Volkskrant, a newspaper based in the Netherlands. We have to come up with a concept related to: **The car in the city**.
 
-Now the goal is to find interesting insights in these (37) datasets about parking and turn these into interesting research questions that we can answer with a datavisualization. The Volkskrant can decide if they think these visualization(s) are enough to write an article about.
+Now the goal is to find interesting insights in these (37) datasets about parking and turn these into interesting research questions that we can answer with a datavisualization created with D3. The Volkskrant can decide if they think these visualization(s) are enough to write an article about.
 
 ![Volkskrant picture](https://github.com/ninoschelcher/functional-programming/blob/main/wiki_media/798px-Volkskrant.svg.png)
 
