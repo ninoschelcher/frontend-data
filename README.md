@@ -50,6 +50,7 @@ Full documentation about my research questions and explanations are [in my wiki]
 So for my concept I will make a data story where I go through and explain step by step how many bikes could fit into the parking garages in Amsterdam.
 
 # Concept 🌝
+The live page can be viewed [on this page](https://ninoschelcher.github.io/frontend-data/src/index.html)
 ![concept screenshot](https://github.com/ninoschelcher/frontend-data/blob/main/wiki_media/conceptscreenshot.png)
 
 
