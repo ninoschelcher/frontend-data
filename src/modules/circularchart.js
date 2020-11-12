@@ -13,6 +13,12 @@ const makeCircularBarPlot = (parkingData) => {
     .attr("class", "tooltip")
     .style("opacity", 0);
 
+  const title = d3
+    .select("#garagecapacity")
+    .append("h2")
+    .html("Amsterdam" +  "<br />" + "Garages")
+
+
   //Define x scale and base it uponn name
   const x = d3
     .scaleBand()
@@ -54,7 +60,7 @@ const makeCircularBarPlot = (parkingData) => {
     .append("g")
     .attr(
       "transform",
-      "translate(" + width / 2 + "," + (height / 2 - 100) + ")"
+      "translate(" + width / 2 + "," + (height / 2 - 150) + ")"
     );
 
   //Draw the arcs from the chart + add the transition tooltips
@@ -162,6 +168,7 @@ const makeCircularBarPlot = (parkingData) => {
     let bikeCountCapacity = 0;
 
     //Filter the dataset based on user input + add up the capacity from the entries that are left
+    // Source: https://vizhub.com/Razpudding/c2a9c9b4fde84816931c404951c79873
     const dataSelect = parkingData.filter((parking) => {
       if (parking.capacity >= input) {
         carCountCapacity += parseInt(parking.capacity);
@@ -190,7 +197,7 @@ const makeCircularBarPlot = (parkingData) => {
         .padRadius(innerRadius)
     );
 
-    //Add the new bars with the appriopriate attributes
+    // //Add the new bars with the appriopriate attributes
     filteredBars
       .enter()
       .append("path")
