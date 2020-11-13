@@ -95,68 +95,6 @@ const makeCircularBarPlot = (parkingData) => {
     tooltip.transition().duration(500).style("opacity", 0);
   });
 
-  //Function that changes the data from normal capacity -> electric charging points
-  function updateValues(sortedData = null) {
-    const checkInput = this ? this.checked : false;
-
-    // let dataSelection = sortedData == null ? parkingData : sortedData;
-    // dataSelection = checkInput
-    //   ? parkingData.filter((parking) => parking.chargingpoints > 0)
-    //   : dataSelection;
-
-    //check if input checked is true and filter the data based on that
-    const dataSelection = checkInput
-      ? parkingData.filter((parking) => parking.chargingpoints > 0)
-      : parkingData;
-
-    //Update the domains
-    x.domain(dataSelection.map((parking) => parking.name));
-    y.domain([
-      0,
-      d3.max(dataSelection.map((parking) => parking.capacity)) / 0.4,
-    ]);
-
-    // Select all bars and put the new filtered data in.
-    const newBars = group.selectAll("path").data(dataSelection);
-    // const color = sortedData == null ? "red" : "#A5D878";
-
-    newBars
-      .attr(
-        "d",
-        d3
-          .arc()
-          .innerRadius(innerRadius)
-          .outerRadius((d) => y(d["capacity"]))
-          .startAngle((d) => x(d.name))
-          .endAngle((d) => x(d.name) + x.bandwidth())
-          .padAngle(0.05)
-          .padRadius(innerRadius)
-      )
-      .attr("fill", "red");
-
-    newBars
-      .enter()
-      .append("path")
-      .attr("fill", "red")
-      .attr(
-        "d",
-        d3
-          .arc()
-          .innerRadius(innerRadius)
-          .outerRadius((d) => y(d["chargingcapacity"]))
-          .startAngle((d) => x(d.name))
-          .endAngle((d) => x(d.name) + x.bandwidth())
-          .padAngle(0.05)
-          .padRadius(innerRadius)
-      )
-      .attr("stroke", "white")
-      .attr("stroke-width", "2")
-      .attr("cursor", "pointer")
-      .attr("fill", "#A5D878");
-
-    newBars.exit().remove();
-  }
-
   //Function that filters capacity based on user input
   function filterCapacity() {
     //Check the value from the input field
@@ -169,7 +107,7 @@ const makeCircularBarPlot = (parkingData) => {
 
     //Filter the dataset based on user input + add up the capacity from the entries that are left
     // Source: https://vizhub.com/Razpudding/c2a9c9b4fde84816931c404951c79873
-    const dataSelect = parkingData.filter((parking) => {
+    const newData = parkingData.filter((parking) => {
       if (parking.capacity >= input) {
         carCountCapacity += parseInt(parking.capacity);
         bikeCountCapacity += parseInt(parking.capacity) * 6;
@@ -188,11 +126,11 @@ const makeCircularBarPlot = (parkingData) => {
     }
     
     //Update domains on the filtered data from user input
-    x.domain(dataSelect.map((parking) => parking.name));
+    x.domain(newData.map((parking) => parking.name));
     y.domain([0, d3.max(parkingData.map((parking) => parking.capacity)) / 0.4]);
 
     //Select all paths(bars) and join with filtered data
-    const filteredBars = group.selectAll("path").data(dataSelect);
+    const filteredBars = group.selectAll("path").data(newData);
 
     //Update the current bars
     filteredBars.attr(
@@ -246,6 +184,64 @@ const makeCircularBarPlot = (parkingData) => {
     filteredBars.exit().remove();
   }
 
+
+
+  //Function that changes the data from normal capacity -> electric charging points
+  function updateValues() {
+    const checkInput = this ? this.checked : false;
+
+    //check if input checked is true and filter the data based on that
+    const dataSelection = checkInput
+      ? parkingData.filter((parking) => parking.chargingpoints > 0)
+      : parkingData;
+
+    //Update the domains
+    x.domain(dataSelection.map((parking) => parking.name));
+    y.domain([
+      0,
+      d3.max(dataSelection.map((parking) => parking.capacity)) / 0.4,
+    ]);
+
+    // Select all bars and put the new filtered data in.
+    const newBars = group.selectAll("path").data(dataSelection);
+
+    newBars
+      .attr(
+        "d",
+        d3
+          .arc()
+          .innerRadius(innerRadius)
+          .outerRadius((d) => y(d["capacity"]))
+          .startAngle((d) => x(d.name))
+          .endAngle((d) => x(d.name) + x.bandwidth())
+          .padAngle(0.05)
+          .padRadius(innerRadius)
+      )
+      .attr("fill", "red");
+
+    newBars
+      .enter()
+      .append("path")
+      .attr("fill", "red")
+      .attr(
+        "d",
+        d3
+          .arc()
+          .innerRadius(innerRadius)
+          .outerRadius((d) => y(d["chargingcapacity"]))
+          .startAngle((d) => x(d.name))
+          .endAngle((d) => x(d.name) + x.bandwidth())
+          .padAngle(0.05)
+          .padRadius(innerRadius)
+      )
+      .attr("stroke", "white")
+      .attr("stroke-width", "2")
+      .attr("cursor", "pointer")
+      .attr("fill", "#A5D878");
+
+    newBars.exit().remove();
+  }
+
   function sortParkingCapacity() {
     //Check if input is checked
     const checkSortInput = this ? this.checked : false;
@@ -255,15 +251,6 @@ const makeCircularBarPlot = (parkingData) => {
         .selectAll("path")
         .sort((a, b) => d3.descending(a.capacity, b.capacity));
     }
-
-    // if (checkSortInput) {
-    //   const sorted = [...parkingData].sort((a, b) => {
-    //     return d3.descending(a.capacity, b.capacity);
-    //   });
-    //   updateValues(sorted);
-    // } else {
-    //   updateValues(parkingData);
-    // }
   }
 
   // Input declarations in chart.
